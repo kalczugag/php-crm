@@ -7,7 +7,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>        
-        <?php include("./views/partials/header.php"); ?>
+        <?php include("../app/views/partials/header.php"); ?>
         <!-- content -->
     </body>
 </html>
