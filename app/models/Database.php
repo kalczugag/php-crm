@@ -5,8 +5,7 @@ namespace App\models;
 use \PDO;
 use PDOException;
 
-class Database
-{
+class Database {
   private $host = DB_HOST;
   private $user = DB_USER;
   private $pass = DB_PASS;
@@ -23,12 +22,10 @@ class Database
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     ];
 
-    try
-    {
+    try {
       $this->db_handler = new PDO($dsn, $this->user, $this->pass, $options);
     }
-    catch(PDOException $e)
-    {
+    catch (PDOException $e) {
       $this->error = $e->getMessage();
       echo $this->error;
     }

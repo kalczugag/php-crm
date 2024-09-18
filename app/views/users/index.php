@@ -7,6 +7,8 @@
                 <li><?= htmlspecialchars($user->name) ?></li>
             <?php endforeach; ?>
         </ul>
+
+
     <?php else: ?>
         <p>No users found.</p>
     <?php endif; ?>
