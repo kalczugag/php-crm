@@ -1,0 +1,17 @@
+{
+    "name": "kalcz/app",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kalczugag",
+            "email": "kalczugag@gmail.com"
+        }
+    ],
+    "require": {
+        "nikic/fast-route": "^1.3"
+    }
+}
