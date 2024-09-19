@@ -23,4 +23,13 @@ class BaseController {
             echo "View not found: $viewPath";
         }
     } 
+
+    protected function getErrorMessage() {
+        if (isset($_SESSION['auth_error'])) {
+            $error = $_SESSION['auth_error'];
+            unset($_SESSION['auth_error']);
+            return $error;
+        }
+        return null;
+    }
 }

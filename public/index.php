@@ -3,6 +3,10 @@
 require '../vendor/autoload.php';
 require "../config/credentials.php";
 
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
+
 $dispatcher = FastRoute\simpleDispatcher(require '../app/Routes/web.php');
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
