@@ -15,7 +15,7 @@
             }
         ?>
 
-        <?php echo $content; ?>
+        <?= $content; ?>
     </div>
 </body>
 </html>

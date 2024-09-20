@@ -22,10 +22,10 @@ class User {
         return $this->db->single();
     }
 
-    public function register($data) {
+    public function createUser($email, $password) {
         $this->db->query("INSERT INTO users (email, password) VALUES (:email, :password)");
-        $this->db->bind(':email', $data['email']);
-        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':email', $email);
+        $this->db->bind(':password', $password);
 
         return $this->db->execute();
     }

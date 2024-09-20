@@ -8,9 +8,11 @@ use Firebase\JWT\Key;
 use Exception;
 
 class AuthController extends BaseController {
+    private $cookieName;
     private $userModel;
 
     public function __construct() {
+        $this->cookieName = $_ENV["AUTH_COOKIE_NAME"];
         $this->userModel = new User();
     }
 
@@ -28,7 +30,7 @@ class AuthController extends BaseController {
         $exp = $_ENV["JWT_EXP"];
 
         $payload = [
-            "iss" => "http://localhost",
+            "iss" => "localhost",
             "sub" => $userId,
             "iat" => time(),
             "exp" => time() + $exp
@@ -53,18 +55,37 @@ class AuthController extends BaseController {
     }
 
     public function login() {
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+
+        $user = $this->userModel->getUserByEmail($email);
+
+        if ($user && password_verify($password, $user->password)) {
+            $jwt = $this->generateToken($user->id);
+
+            setcookie($this->cookieName, $jwt, time() + 3600, "/", "", false, true);
+            header("Location: /");
+        } else {
+            return "Invalid login credentials";
+        }
+    }
+    
+    public function register() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = trim($_POST["email"]);
-            $password = trim($_POST["password"]);
+            $password = password_hash(trim($_POST["password"]), PASSWORD_BCRYPT);
 
-            $user = $this->userModel->getUserByEmail($email);
-
-            if ($user && password_verify($password, $user->password)) {
-                $token = $this->generateToken($user->id);
-                return json_encode(["token" => $token]);
+            if ($this->userModel->createUser($email, $password)) {
+                header('Location: /login');
+                exit;
             } else {
-                return "Invalid credentials";
+                return $this->loadView("auth/register", ["title" => "Register", "error" => "Registration failed"]);
             }
         }
+    }
+
+    public function logout() {
+        setcookie($this->cookieName, "", time() - 3600, "/");
+        header("Location: /login");
     }
 }

@@ -3,6 +3,7 @@
 namespace App\middlewares;
 
 use App\controllers\AuthController;
+use Exception;
 
 class AuthMiddleware {
     private $authController;
@@ -12,21 +13,19 @@ class AuthMiddleware {
     }
 
     public function handle() {
-        if (!isset($_SERVER['HTTP_AUTHORIZATION'])) {
-            $_SESSION['auth_error'] = "Authorization header not found.";
+        if (!isset($_COOKIE['auth_token'])) {
             header('Location: /login');
             exit;
         }
 
-        $token = str_replace('Bearer ', '', $_SERVER['HTTP_AUTHORIZATION']);
-        $result = $this->authController->verifyToken($token);
-
-        if (is_string($result)) {
-            $_SESSION['auth_error'] = $result;
+        try {
+            $decoded = $this->authController->verifyToken($_COOKIE['auth_token']);
+            return $decoded;
+        } catch (Exception $e) {
+            // Invalid token
+            setcookie('auth_token', '', time() - 3600, "/"); // Clear the invalid token
             header('Location: /login');
             exit;
         }
-
-        $_SESSION['user'] = $result->sub;
     }
 }
