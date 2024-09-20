@@ -7,15 +7,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="container mx-auto p-4 space-y-10">
+    <div class="md:flex h-screen md:overflow-hidden">
         <?php
             $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
             if ($path !== "/login" && $path !== "/register") {
-                include dirname(__DIR__) . "/views/components/header.php";
+                include dirname(__DIR__) . "/views/components/sidebar.php";
             }
         ?>
-
-        <?= $content; ?>
+        <div class="flex-1 flex flex-col">
+            <?php
+                $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+                if ($path !== "/login" && $path !== "/register") {
+                    include dirname(__DIR__) . "/views/components/header.php";
+                }
+            ?>
+            <div class="flex-1 overflow-auto p-10 bg-[#f5f7fb]">
+                <div class="container mx-auto">
+                    <?= $content; ?>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script type="text/javascript" src="./js/index.js" defer></script>
 </body>
 </html>

@@ -14,6 +14,6 @@ class HomeController extends BaseController {
     public function index() {
         $this->authMiddleware->handle();
 
-        $this->loadView("home/index", ["title" => "Home"]);
+        $this->loadView("home/index", ["title" => "List of tasks"]);
     }
 }
