@@ -17,11 +17,11 @@ class AuthController extends BaseController {
     }
 
     public function loginPage() {
-        $this->loadView("auth/login", ["title" => "Login"]);
+        $this->loadView("pages/auth/login", ["title" => "Login"]);
     }
 
     public function registerPage() {
-        $this->loadView("auth/register", ["title" => "Register"]);
+        $this->loadView("pages/auth/register", ["title" => "Register"]);
     }
 
     public function generateToken($userId) {
@@ -79,7 +79,7 @@ class AuthController extends BaseController {
                 header('Location: /login');
                 exit;
             } else {
-                return $this->loadView("auth/register", ["title" => "Register", "error" => "Registration failed"]);
+                return $this->loadView("pages/auth/register", ["title" => "Register", "error" => "Registration failed"]);
             }
         }
     }

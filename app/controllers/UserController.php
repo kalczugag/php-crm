@@ -22,6 +22,6 @@ class UserController extends BaseController {
             "title" => "Users List",
             "users" => $users
         ];
-        $this->loadView("users/index", $data);
+        $this->loadView("pages/users/index", $data);
     }
 }

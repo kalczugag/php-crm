@@ -1,5 +1,7 @@
-const tasksList = document.getElementById("tasks-date");
+import { DOMManipulator } from "./domManipulator";
+
+const domManiupulator = new DOMManipulator();
 
 const html = "<span>02</span><span>Feb</span>";
 
-tasksList.insertAdjacentHTML("beforeend", html);
+domManiupulator.insertHTMLById("tasks-date", html);

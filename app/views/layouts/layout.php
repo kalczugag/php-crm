@@ -11,16 +11,16 @@
         <?php
             $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
             if ($path !== "/login" && $path !== "/register") {
-                include dirname(__DIR__) . "/views/components/sidebar.php";
+                include "../app/views/components/sidebar.php";
             }
         ?>
         <div class="flex-1 flex flex-col">
-            <?php
+            <!-- <?php
                 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
                 if ($path !== "/login" && $path !== "/register") {
-                    include dirname(__DIR__) . "/views/components/header.php";
+                    include "../app/views/components/header.php";
                 }
-            ?>
+            ?> -->
             <div class="flex-1 overflow-auto p-10 bg-[#f5f7fb]">
                 <div class="container mx-auto">
                     <?= $content; ?>
@@ -29,6 +29,6 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="./js/index.js" defer></script>
+    <script type="module" src="./js/index.js" defer></script>
 </body>
 </html>

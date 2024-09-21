@@ -4,7 +4,7 @@ namespace App\controllers;
 
 use App\middlewares\AuthMiddleware;
 
-class HomeController extends BaseController {
+class TasksController extends BaseController {
     private $authMiddleware;
 
     public function __construct() {
@@ -14,6 +14,6 @@ class HomeController extends BaseController {
     public function index() {
         $this->authMiddleware->handle();
 
-        $this->loadView("home/index", ["title" => "List of tasks"]);
+        $this->loadView("pages/tasks/index", ["title" => "List of tasks"]);
     }
 }

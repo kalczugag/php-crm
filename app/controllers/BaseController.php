@@ -7,7 +7,7 @@ class BaseController {
         extract($data);
         
         $viewPath = dirname(__DIR__) . "/views/" . $view . ".php";
-        $layoutPath = dirname(__DIR__) . "/views/layout.php";
+        $layoutPath = dirname(__DIR__) . "/views/layouts/layout.php";
 
         if (file_exists($viewPath)) {
             ob_start();
