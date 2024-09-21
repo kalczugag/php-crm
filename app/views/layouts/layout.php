@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="md:flex h-screen md:overflow-hidden">
+    <div class="flex h-screen overflow-hidden">
         <?php
             $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
             if ($path !== "/login" && $path !== "/register") {
@@ -22,7 +22,7 @@
                 }
             ?> -->
             <div class="flex-1 overflow-auto p-10 bg-[#f5f7fb]">
-                <div class="container mx-auto">
+                <div class="mx-auto">
                     <?= $content; ?>
                 </div>
             </div>

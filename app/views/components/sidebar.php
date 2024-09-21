@@ -16,7 +16,7 @@
             </li>
             <li>
                 <a href="/tasks?status=starred" class="block p-2 px-4 hover:bg-gray-600">
-                    Starred
+                    Importants
                 </a>
             </li>
             <li>
